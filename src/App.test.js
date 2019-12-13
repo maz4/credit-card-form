@@ -14,8 +14,8 @@ test('renders the card form and type in the fields', () => {
 
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
-  const experationMonth = getByLabelText(/expiration month/i);
-  const experationYear = getByLabelText(/expiration year/i);
+  const expirationMonth = getByLabelText(/expiration month/i);
+  const expirationYear = getByLabelText(/expiration year/i);
   const cvvCode = getByLabelText(/cvv/i);
   const submit = getByText(/submit/i);
 
@@ -34,11 +34,11 @@ test('renders the card form and type in the fields', () => {
 
   expect(presentedCardName).toBe('test test');
 
-  fireEvent.change(experationMonth, {target: {value: '01'}});
+  fireEvent.change(expirationMonth, {target: {value: '01'}});
 
   expect(presentedCardMonth).toBe('01');
 
-  fireEvent.change(experationYear, {target: {value: '2020'}});
+  fireEvent.change(expirationYear, {target: {value: '2020'}});
 
   expect(presentedCardYear).toBe('20');
 
@@ -49,5 +49,36 @@ test('renders the card form and type in the fields', () => {
   fireEvent.click(submit);
 
   expect(queryByText(/payment succeesful/i));
+
+});
+
+test('it will show errors on invalid data', () => {
+  const {getByLabelText, queryByText} = render(<App/>);
+
+  const cardNumber = getByLabelText(/card number/i);
+  const cardHolder = getByLabelText(/card holder/i);
+  const expirationMonth = getByLabelText(/expiration month/i);
+  const expirationYear = getByLabelText(/expiration year/i);
+  const cvvCode = getByLabelText(/cvv/i);
+
+  fireEvent.change(cardNumber, {target: {value: '1111 2222 3333 444'}});
+
+  expect(queryByText(/invalid card number/i)).toBeInTheDocument();
+
+  fireEvent.change(cardHolder, {target: {value: 'test'}});
+
+  expect(queryByText(/invalid name/i)).toBeInTheDocument();
+
+  fireEvent.change(expirationMonth, {target: {value: ''}});
+
+  expect(queryByText(/invalid expiration month/i)).toBeInTheDocument();
+
+  fireEvent.change(expirationYear, {target: {value: ''}});
+
+  expect(queryByText(/invalid expiration year/i)).toBeInTheDocument();
+
+  fireEvent.change(cvvCode, {target: {value: '11'}});
+
+  expect(queryByText(/invalid cvv code/i)).toBeInTheDocument();
 
 });
