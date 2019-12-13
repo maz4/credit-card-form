@@ -10,7 +10,7 @@ function render(component) {
 const testCardNumber = '4000 1111 2222 3333'
 
 test('renders the card form and type in the fields', () => {
-  const {getByText, getByLabelText, getByTestId, queryByAltText} = render(<App/>);
+  const {getByText, getByLabelText, getByTestId, queryByAltText, queryByText} = render(<App/>);
 
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
@@ -45,5 +45,9 @@ test('renders the card form and type in the fields', () => {
   fireEvent.change(cvvCode, {target: {value: '111'}});
 
   expect(presentedCardCvv).toBe('111');
+
+  fireEvent.click(submit);
+
+  expect(queryByText(/payment succeesful/i));
 
 });
