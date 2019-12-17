@@ -1,16 +1,21 @@
-import React from 'react';
-import {render as rtlRender, fireEvent} from '@testing-library/react';
-import App from './App';
+import React from "react";
+import {render as rtlRender, fireEvent} from "@testing-library/react";
+import App from "./App";
 
 function render(component) {
-
   return rtlRender(component);
 }
 
-const testCardNumber = '4000 1111 2222 3333'
+const testCardNumber = "4000 1111 2222 3333";
 
-test('renders the card form and type in the fields', () => {
-  const {getByText, getByLabelText, getByTestId, queryByAltText, queryByText} = render(<App/>);
+test("renders the card form and type in the fields", () => {
+  const {
+    getByText,
+    getByLabelText,
+    getByTestId,
+    queryByAltText,
+    queryByText,
+  } = render(<App />);
 
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
@@ -28,32 +33,31 @@ test('renders the card form and type in the fields', () => {
   fireEvent.change(cardNumber, {target: {value: testCardNumber}});
 
   expect(presentedCardNumber).toBe(testCardNumber);
-  expect(queryByAltText('visa')).toBeInTheDocument();
+  expect(queryByAltText("visa")).toBeInTheDocument();
 
-  fireEvent.change(cardHolder, {target: {value: 'test test'}});
+  fireEvent.change(cardHolder, {target: {value: "test test"}});
 
-  expect(presentedCardName).toBe('test test');
+  expect(presentedCardName).toBe("test test");
 
-  fireEvent.change(expirationMonth, {target: {value: '01'}});
+  fireEvent.change(expirationMonth, {target: {value: "01"}});
 
-  expect(presentedCardMonth).toBe('01');
+  expect(presentedCardMonth).toBe("01");
 
-  fireEvent.change(expirationYear, {target: {value: '2020'}});
+  fireEvent.change(expirationYear, {target: {value: "2020"}});
 
-  expect(presentedCardYear).toBe('20');
+  expect(presentedCardYear).toBe("20");
 
-  fireEvent.change(cvvCode, {target: {value: '111'}});
+  fireEvent.change(cvvCode, {target: {value: "111"}});
 
-  expect(presentedCardCvv).toBe('111');
+  expect(presentedCardCvv).toBe("111");
 
   fireEvent.click(submit);
 
   expect(queryByText(/payment succeesful/i));
-
 });
 
-test('it will show errors on invalid data', () => {
-  const {getByLabelText, queryByText} = render(<App/>);
+test("it will show errors on invalid data", () => {
+  const {getByLabelText, queryByText} = render(<App />);
 
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
@@ -61,24 +65,23 @@ test('it will show errors on invalid data', () => {
   const expirationYear = getByLabelText(/expiration year/i);
   const cvvCode = getByLabelText(/cvv/i);
 
-  fireEvent.change(cardNumber, {target: {value: '1111 2222 3333 444'}});
+  fireEvent.change(cardNumber, {target: {value: "1111 2222 3333 444"}});
 
   expect(queryByText(/invalid card number/i)).toBeInTheDocument();
 
-  fireEvent.change(cardHolder, {target: {value: 'test'}});
+  fireEvent.change(cardHolder, {target: {value: "test"}});
 
   expect(queryByText(/invalid name/i)).toBeInTheDocument();
 
-  fireEvent.change(expirationMonth, {target: {value: ''}});
+  fireEvent.change(expirationMonth, {target: {value: ""}});
 
   expect(queryByText(/invalid expiration month/i)).toBeInTheDocument();
 
-  fireEvent.change(expirationYear, {target: {value: ''}});
+  fireEvent.change(expirationYear, {target: {value: ""}});
 
   expect(queryByText(/invalid expiration year/i)).toBeInTheDocument();
 
-  fireEvent.change(cvvCode, {target: {value: '11'}});
+  fireEvent.change(cvvCode, {target: {value: "11"}});
 
   expect(queryByText(/invalid cvv code/i)).toBeInTheDocument();
-
 });
