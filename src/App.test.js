@@ -17,6 +17,9 @@ test("renders the card form and type in the fields", () => {
     queryByText,
   } = render(<App />);
 
+
+
+  
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
   const expirationMonth = getByLabelText(/expiration month/i);

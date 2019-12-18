@@ -4,7 +4,11 @@ module.exports = {
     jest: true,
     es6: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "eslint-config-prettier",
+  ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -18,4 +22,9 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {},
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };
