@@ -21,7 +21,7 @@
     "validate": "npm run lint && npm run prettier -- --list-different"
   },
   "pre-commit": [
-    "validate"
+    "npm run validate"
   ],
   "eslintConfig": {
     "extends": "react-app"
