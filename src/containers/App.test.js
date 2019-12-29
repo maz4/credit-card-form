@@ -34,7 +34,7 @@ test("renders the card form and type in the fields", () => {
 
   fireEvent.change(cardNumber, {target: {value: testCardNumber}});
 
-  expect(presentedCardNumber).toBe(testCardNumber);
+  expect(presentedCardNumber.value).toBe(testCardNumber);
   expect(queryByAltText("visa")).toBeInTheDocument();
 
   fireEvent.change(cardHolder, {target: {value: "test test"}});

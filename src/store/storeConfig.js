@@ -1,12 +1,12 @@
 import {compose, createStore} from "redux";
-import reducer from "../reducers";
+import {reducer} from "../reducers/index";
 
-export const storeConfig = initialState => {
-  // const composeEnhancers =
-  // process.env.NODE_ENV === "development"
-  //   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  //   : compose;
+export const storeConfig = (initialState = {}) => {
+  const composeEnhancers =
+    process.env.NODE_ENV === "development"
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      : compose;
 
-  // return createStore(reducer, initialState, composeEnhancers());
-  return createStore(reducer, initialState, compose());
+  return createStore(reducer, initialState, composeEnhancers());
+  // return createStore(reducer, initialState, compose());
 };

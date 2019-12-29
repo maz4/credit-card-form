@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 const Card = () => {
   return (
@@ -12,4 +13,14 @@ const Card = () => {
   );
 };
 
-export default Card;
+const mapStateToProps = state => {
+  return {
+    cardNumber: state.cardNumber,
+    cardName: state.cardName,
+    cardMonth: state.cardMonth,
+    cardYear: state.cardYear,
+    cardCvv: state.cardCvv,
+  };
+};
+
+export default connect(mapStateToProps)(Card);
