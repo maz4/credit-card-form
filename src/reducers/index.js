@@ -4,6 +4,7 @@ import {cardName} from "./cardName";
 import {cardMonth} from "./cardMonth";
 import {cardYear} from "./cardYear";
 import {cardCvv} from "./cardCvv";
+import {inputError} from "./inputError";
 
 export const reducer = combineReducers({
   cardNumber,
@@ -11,4 +12,5 @@ export const reducer = combineReducers({
   cardMonth,
   cardYear,
   cardCvv,
+  inputError,
 });

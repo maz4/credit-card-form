@@ -16,15 +16,42 @@ const Card = props => {
     });
   };
 
-  const cardIndustryIdentifier = cardNumber => {
-    //check of the industry identifier with switch;
-    return cardNumber;
+  const starCardNumber = cardNumber => {
+    const fullNumberLength = 16;
+    const cardNumberLength = cardNumber.length;
+    const hashAmount = fullNumberLength - cardNumberLength;
+    let cardNumberCopy = cardNumber.slice();
+
+    for (let i = hashAmount; i > 0; i--) {
+      cardNumberCopy = cardNumberCopy + "*";
+    }
+
+    return cardNumberCopy;
   };
+
+  const cardIndustryIdentifier = cardNumber => {
+    const firstDigit = cardNumber.slice(0, 1);
+    switch (firstDigit) {
+      case "3":
+        return "American Express";
+      case "4":
+        return "Visa";
+      case "5":
+        return "MasterCard";
+      case "6":
+        return "Discover Card";
+      default:
+        return null;
+    }
+  };
+
+  const staredNumber = starCardNumber(cardNumber);
+  const formatCardNumber = spaceString(staredNumber);
 
   return (
     <div>
       <p data-testid="card-identifier">{cardIndustryIdentifier(cardNumber)}</p>
-      <p data-testid="card-number">{spaceString(cardNumber)}</p>
+      <p data-testid="card-number">{formatCardNumber}</p>
       <p data-testid="card-name">{cardName}</p>
       <p data-testid="card-month">{cardMonth}</p>
       <p data-testid="card-year">{cardYear}</p>

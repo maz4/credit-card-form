@@ -8,10 +8,27 @@ import {
   updateMonth,
   updateYear,
   updateCvv,
+  setCvvError,
+  setMonthError,
+  setNameError,
+  setNumberError,
+  setYearError,
+  clearErrors,
 } from "../actions/index";
 
 const CardForm = props => {
-  const {cardNumber, cardName, cardMonth, cardYear, cardCvv} = props;
+  const {
+    cardNumber,
+    cardName,
+    cardMonth,
+    cardYear,
+    cardCvv,
+    numberError,
+    nameError,
+    monthError,
+    yearError,
+    cvvError,
+  } = props;
 
   const updateCardNumber = value => {
     props.updateNumber(value);
@@ -33,16 +50,62 @@ const CardForm = props => {
     props.updateCvv(value);
   };
 
+  const checkWhiteSpaces = str => {
+    return RegExp(/^\s*$/).test(str);
+  };
+
+  const submitHandler = event => {
+    event.preventDefault();
+    props.clearErrors();
+    const numberStatus = cardNumber.length === 16;
+    const nameStatus = checkWhiteSpaces(cardName);
+    const expMonthStatus = cardMonth.length === 2;
+    const expYearStatus = cardYear.length === 2;
+    const cvvStatus = cardCvv.length >= 3 && cardCvv.length <= 4;
+
+    if (!numberStatus) {
+      props.setNumberError();
+    }
+
+    if (nameStatus) {
+      props.setNameError();
+    }
+
+    if (!expMonthStatus) {
+      props.setMonthError();
+    }
+
+    if (!expYearStatus) {
+      props.setYearError();
+    }
+
+    if (!cvvStatus) {
+      props.setCvvError();
+    }
+
+    if (
+      numberStatus &&
+      !nameStatus &&
+      expMonthStatus &&
+      expYearStatus &&
+      cvvStatus
+    ) {
+      event.target.submit();
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={event => submitHandler(event)}>
       <Input
-        type="number"
+        type="text"
         name="cardNumber"
         labelName="card number"
         idFor="cardNumber"
         maxCharacters="16"
+        digitsOnly={true}
         updateHandler={updateCardNumber}
         value={cardNumber}
+        error={numberError}
       />
       <Input
         type="text"
@@ -52,6 +115,7 @@ const CardForm = props => {
         maxCharacters="999"
         updateHandler={updateCardName}
         value={cardName}
+        error={nameError}
       />
       <Input
         type="number"
@@ -59,8 +123,10 @@ const CardForm = props => {
         labelName="expiration month"
         idFor="expMonth"
         maxCharacters="2"
+        digitsOnly={true}
         updateHandler={updateCardMonth}
         value={cardMonth}
+        error={monthError}
       />
       <Input
         type="number"
@@ -68,8 +134,10 @@ const CardForm = props => {
         labelName="expiration year"
         idFor="expYear"
         maxCharacters="2"
+        digitsOnly={true}
         updateHandler={updateCardYear}
         value={cardYear}
+        error={yearError}
       />
       <Input
         type="number"
@@ -77,8 +145,10 @@ const CardForm = props => {
         labelName="cvv"
         idFor="cvv"
         maxCharacters="4"
+        digitsOnly={true}
         updateHandler={updateCardCvv}
         value={cardCvv}
+        error={cvvError}
       />
       <Button text="submit" />
     </form>
@@ -92,6 +162,11 @@ const mapStateToProps = state => {
     cardMonth: state.cardMonth,
     cardYear: state.cardYear,
     cardCvv: state.cardCvv,
+    numberError: state.inputError.numberError,
+    nameError: state.inputError.nameError,
+    monthError: state.inputError.monthError,
+    yearError: state.inputError.yearError,
+    cvvError: state.inputError.cvvError,
   };
 };
 
@@ -102,6 +177,12 @@ const mapDispatchToProps = dispatch => {
     updateMonth: number => dispatch(updateMonth(number)),
     updateYear: number => dispatch(updateYear(number)),
     updateCvv: number => dispatch(updateCvv(number)),
+    setNumberError: () => dispatch(setNumberError()),
+    setNameError: () => dispatch(setNameError()),
+    setMonthError: () => dispatch(setMonthError()),
+    setYearError: () => dispatch(setYearError()),
+    setCvvError: () => dispatch(setCvvError()),
+    clearErrors: () => dispatch(clearErrors()),
   };
 };
 

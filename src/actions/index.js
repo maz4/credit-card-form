@@ -34,3 +34,39 @@ export const updateCvv = payload => {
     payload,
   };
 };
+
+export const setNumberError = () => {
+  return {
+    type: actionTypes.NUMBER_ERROR,
+  };
+};
+
+export const setNameError = () => {
+  return {
+    type: actionTypes.NAME_ERROR,
+  };
+};
+
+export const setMonthError = () => {
+  return {
+    type: actionTypes.MONTH_ERROR,
+  };
+};
+
+export const setYearError = () => {
+  return {
+    type: actionTypes.YEAR_ERROR,
+  };
+};
+
+export const setCvvError = () => {
+  return {
+    type: actionTypes.CVV_ERROR,
+  };
+};
+
+export const clearErrors = () => {
+  return {
+    type: actionTypes.CLEAR_ERRORS,
+  };
+};

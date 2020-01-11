@@ -7,13 +7,17 @@ const Input = props => {
     idFor,
     labelName,
     maxCharacters,
+    digitsOnly,
     updateHandler,
     value,
+    error,
   } = props;
 
   function changeHandler(event) {
     const maxValue = parseInt(maxCharacters, 10);
-    const value = event.target.value;
+    const value = digitsOnly
+      ? event.target.value.replace(/\D/, "")
+      : event.target.value;
 
     if (value.length > maxValue) {
       return;
@@ -24,7 +28,9 @@ const Input = props => {
 
   return (
     <div>
-      <label htmlFor={idFor}>{labelName}</label>
+      <label htmlFor={idFor}>
+        {labelName} {error ? <span>Invalid Data</span> : null}
+      </label>
       <input
         type={type}
         name={name}
