@@ -52,10 +52,10 @@ const Card = props => {
     <div>
       <p data-testid="card-identifier">{cardIndustryIdentifier(cardNumber)}</p>
       <p data-testid="card-number">{formatCardNumber}</p>
-      <p data-testid="card-name">{cardName}</p>
-      <p data-testid="card-month">{cardMonth}</p>
-      <p data-testid="card-year">{cardYear}</p>
-      <p data-testid="card-cvv">{cardCvv}</p>
+      <p data-testid="card-name">{cardName === "" ? "Name" : cardName}</p>
+      <p data-testid="card-month">{cardMonth === "" ? "--" : cardMonth}</p>
+      <p data-testid="card-year">{cardYear === "" ? "--" : cardYear}</p>
+      <p data-testid="card-cvv">{cardCvv === "" ? "---" : cardCvv}</p>
     </div>
   );
 };

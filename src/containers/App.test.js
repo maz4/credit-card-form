@@ -3,9 +3,6 @@ import {render as rtlRender, fireEvent} from "@testing-library/react";
 import {Provider} from "react-redux";
 import App from "./App";
 import {store} from "../store";
-// import {cardMonth} from "../reducers/cardMonth";
-// import {cardYear} from "../reducers/cardYear";
-// import {cardCvv} from "../reducers/cardCvv";
 
 function render(component) {
   return rtlRender(<Provider store={store}>{component}</Provider>);
@@ -29,6 +26,10 @@ test("renders the card form and type in the fields", () => {
   const presentedCardIdentifier = getByTestId(/card-identifier/i);
 
   expect(presentedCardNumber).toHaveTextContent("**** **** **** ****");
+  expect(presentedCardName).toHaveTextContent("Name");
+  expect(presentedCardMonth).toHaveTextContent("--");
+  expect(presentedCardYear).toHaveTextContent("--");
+  expect(presentedCardCvv).toHaveTextContent("---");
 
   fireEvent.change(cardNumber, {target: {value: "40001111"}});
 
