@@ -1,0 +1,9 @@
+.CardForm {
+  background-color: #f7f5f5;
+  border: 1px solid #f0eeee;
+  border-radius: 0.5rem;
+  box-shadow: 0px 15px 30px #cbcaca;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1rem;
+}

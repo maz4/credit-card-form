@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Input.module.css";
 
 const Input = props => {
   const {
@@ -27,11 +28,12 @@ const Input = props => {
   }
 
   return (
-    <div>
-      <label htmlFor={idFor}>
+    <div className={styles.Input__wrapper}>
+      <label className={styles.Input__label} htmlFor={idFor}>
         {labelName} {error ? <span>Invalid Data</span> : null}
       </label>
       <input
+        className={styles.Input__element}
         type={type}
         name={name}
         id={idFor}

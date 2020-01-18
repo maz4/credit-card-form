@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import styles from "./CardForm.module.css";
 import {
   updateNumber,
   updateName,
@@ -95,7 +96,7 @@ const CardForm = props => {
   };
 
   return (
-    <form onSubmit={event => submitHandler(event)}>
+    <form className={styles.CardForm} onSubmit={event => submitHandler(event)}>
       <Input
         type="text"
         name="cardNumber"
