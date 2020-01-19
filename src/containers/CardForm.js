@@ -113,7 +113,7 @@ const CardForm = props => {
         name="cardName"
         labelName="card holder"
         idFor="ownerName"
-        maxCharacters="999"
+        maxCharacters="40"
         updateHandler={updateCardName}
         value={cardName}
         error={nameError}

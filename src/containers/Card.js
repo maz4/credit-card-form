@@ -1,5 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
+import styles from "./Card.module.css";
+import CardNumber from "../components/CardNumber";
+import CardLogo from "../components/CardLogo";
+import CardName from "../components/CardName";
+import CardDate from "../components/CardDate";
+import CardCvv from "../components/CardCvv";
+import CardData from "../components/CardData";
 
 const Card = props => {
   const {cardNumber, cardName, cardMonth, cardYear, cardCvv} = props;
@@ -41,7 +48,7 @@ const Card = props => {
       case "6":
         return "Discover Card";
       default:
-        return null;
+        return "Visa";
     }
   };
 
@@ -49,13 +56,22 @@ const Card = props => {
   const formatCardNumber = spaceString(staredNumber);
 
   return (
-    <div>
-      <p data-testid="card-identifier">{cardIndustryIdentifier(cardNumber)}</p>
-      <p data-testid="card-number">{formatCardNumber}</p>
-      <p data-testid="card-name">{cardName === "" ? "Name" : cardName}</p>
-      <p data-testid="card-month">{cardMonth === "" ? "--" : cardMonth}</p>
-      <p data-testid="card-year">{cardYear === "" ? "--" : cardYear}</p>
-      <p data-testid="card-cvv">{cardCvv === "" ? "---" : cardCvv}</p>
+    <div className={styles.Card}>
+      <CardLogo
+        logoTxt={cardIndustryIdentifier(cardNumber)
+          .toLowerCase()
+          .split(" ")
+          .join("")}
+      />
+      <CardNumber number={formatCardNumber} />
+      <CardData>
+        <CardName name={cardName === "" ? "Name" : cardName} />
+        <CardDate
+          month={cardMonth === "" ? "--" : cardMonth}
+          year={cardYear === "" ? "--" : cardYear}
+        />
+      </CardData>
+      <CardCvv cvv={cardCvv === "" ? "---" : cardCvv} />
     </div>
   );
 };

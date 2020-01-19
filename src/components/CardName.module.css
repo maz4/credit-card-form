@@ -1,0 +1,25 @@
+.CardName {
+  flex-basis: 80%;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.CardName__label {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c5c5c5;
+}
+
+.CardName__name {
+  font-family: "Inconsolata", monospace;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}

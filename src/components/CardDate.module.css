@@ -1,0 +1,36 @@
+.CardDate {
+  flex-basis: 20%;
+  flex-grow: 0;
+  flex-shrink: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Inconsolata", monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.CardDate__month {
+  display: inline;
+}
+
+.CardDate__month:after {
+  content: "/";
+  font-family: "Inconsolata", monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.CardDate__year {
+  display: inline;
+}
+
+.CardDate__label {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c5c5c5;
+}
