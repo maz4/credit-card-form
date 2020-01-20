@@ -9,7 +9,13 @@ function render(component) {
 }
 
 test("renders the card form and type in the fields", () => {
-  const {getByText, getByLabelText, getByTestId, queryByText} = render(<App />);
+  const {
+    getByText,
+    getByLabelText,
+    getByTestId,
+    queryByText,
+    queryByAltText,
+  } = render(<App />);
 
   const cardNumber = getByLabelText(/card number/i);
   const cardHolder = getByLabelText(/card holder/i);
@@ -23,7 +29,6 @@ test("renders the card form and type in the fields", () => {
   const presentedCardMonth = getByTestId(/card-month/i);
   const presentedCardYear = getByTestId(/card-year/i);
   const presentedCardCvv = getByTestId(/card-cvv/i);
-  const presentedCardIdentifier = getByTestId(/card-identifier/i);
 
   expect(presentedCardNumber).toHaveTextContent("**** **** **** ****");
   expect(presentedCardName).toHaveTextContent("Name");
@@ -38,7 +43,7 @@ test("renders the card form and type in the fields", () => {
   fireEvent.change(cardNumber, {target: {value: "4000111122223333"}});
 
   expect(presentedCardNumber).toHaveTextContent("4000 1111 2222 3333");
-  expect(presentedCardIdentifier).toHaveTextContent("Visa");
+  expect(queryByAltText("Visa")).toBeInTheDocument;
 
   fireEvent.change(cardHolder, {target: {value: "test test"}});
 

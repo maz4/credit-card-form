@@ -54,11 +54,14 @@ const Card = props => {
 
   const staredNumber = starCardNumber(cardNumber);
   const formatCardNumber = spaceString(staredNumber);
+  // debugger;
+  const cardCompany = cardIndustryIdentifier(cardNumber);
 
   return (
     <div className={styles.Card}>
       <CardLogo
-        logoTxt={cardIndustryIdentifier(cardNumber)
+        alt={cardCompany}
+        src={cardCompany
           .toLowerCase()
           .split(" ")
           .join("")}

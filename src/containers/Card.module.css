@@ -1,11 +1,12 @@
 .Card {
   position: relative;
-  width: 60%;
+  width: 21rem;
   margin: 0 auto;
   margin-bottom: 3rem;
   font-size: 1.6rem;
   border: 1px solid black;
   border-radius: 15px;
+  box-sizing: border-box;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 5rem;

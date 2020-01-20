@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./CardLogo.module.css";
-const CardLogo = ({logoTxt}) => {
+const CardLogo = ({src, alt}) => {
   return (
     <img
       className={styles.CardLogo}
-      alt={logoTxt}
-      src={`/${logoTxt}.png`}
+      alt={`${alt} logo`}
+      src={`/${src}.png`}
       width={"80px"}
       data-testid="card-identifier"
     />
