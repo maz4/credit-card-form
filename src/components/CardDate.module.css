@@ -1,3 +1,5 @@
+@value medium from "../shared-styles/mediaBreakpoints.css";
+
 .CardDate {
   flex-basis: 30%;
   flex-grow: 0;
@@ -33,4 +35,16 @@
   font-size: 1rem;
   font-weight: 700;
   color: #c5c5c5;
+}
+
+@media medium {
+  .CardDate__label {
+    font-size: 1.2rem;
+  }
+
+  .CardDate__month,
+  .CardDate__month:after,
+  .CardDate__year {
+    font-size: 1.4rem;
+  }
 }

@@ -1,5 +1,10 @@
+@value medium from "../shared-styles/mediaBreakpoints.css";
+
 .AppWrapper {
-  padding-top: 1rem;
+  padding-top: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-bottom: 2rem;
+  max-width: 39rem;
+  margin: 0 auto;
 }
