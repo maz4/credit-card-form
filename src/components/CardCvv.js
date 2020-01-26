@@ -3,9 +3,9 @@ import styles from "./CardCvv.module.css";
 
 const CardCvv = ({cvv}) => {
   return (
-    <p className={styles.CardCvv} data-testid="card-cvv">
-      {cvv}
-    </p>
+    <div className={styles.CardCvv} data-testid="card-cvv">
+      <p className={styles.CardCvv__text}>{cvv}</p>
+    </div>
   );
 };
 

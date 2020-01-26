@@ -12,6 +12,7 @@ const Input = props => {
     updateHandler,
     value,
     error,
+    showCardBack,
   } = props;
 
   function changeHandler(event) {
@@ -27,6 +28,18 @@ const Input = props => {
     updateHandler(value);
   }
 
+  function blurHandler() {
+    if (name === "cvv") {
+      showCardBack(false);
+    }
+  }
+
+  function focusHandler() {
+    if (name === "cvv") {
+      showCardBack(true);
+    }
+  }
+
   return (
     <div className={styles.Input__wrapper}>
       <label className={styles.Input__label} htmlFor={idFor}>
@@ -39,6 +52,8 @@ const Input = props => {
         id={idFor}
         maxLength={maxCharacters}
         onChange={changeHandler}
+        onBlur={blurHandler}
+        onFocus={focusHandler}
         value={value}
       />
     </div>

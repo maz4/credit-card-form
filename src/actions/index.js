@@ -70,3 +70,10 @@ export const clearErrors = () => {
     type: actionTypes.CLEAR_ERRORS,
   };
 };
+
+export const cardBacVisible = payload => {
+  return {
+    type: actionTypes.CARD_BACK_VISIBLE,
+    payload,
+  };
+};

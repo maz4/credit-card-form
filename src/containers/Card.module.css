@@ -3,6 +3,7 @@
 .Card {
   position: relative;
   width: 21rem;
+  height: 13.5rem;
   margin: 0 auto;
   margin-bottom: 3rem;
   font-size: 1.6rem;
@@ -27,5 +28,6 @@
     padding-right: 1rem;
     padding-top: 5rem;
     padding-bottom: 4rem;
+    height: 17.5rem;
   }
 }

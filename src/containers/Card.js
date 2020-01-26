@@ -9,7 +9,14 @@ import CardCvv from "../components/CardCvv";
 import CardData from "../components/CardData";
 
 const Card = props => {
-  const {cardNumber, cardName, cardMonth, cardYear, cardCvv} = props;
+  const {
+    cardNumber,
+    cardName,
+    cardMonth,
+    cardYear,
+    cardCvv,
+    cardBackVisible,
+  } = props;
 
   const spaceString = str => {
     const strArr = str.split("");
@@ -54,27 +61,31 @@ const Card = props => {
 
   const staredNumber = starCardNumber(cardNumber);
   const formatCardNumber = spaceString(staredNumber);
-  // debugger;
   const cardCompany = cardIndustryIdentifier(cardNumber);
 
   return (
     <div className={styles.Card}>
-      <CardLogo
-        alt={cardCompany}
-        src={cardCompany
-          .toLowerCase()
-          .split(" ")
-          .join("")}
-      />
-      <CardNumber number={formatCardNumber} />
-      <CardData>
-        <CardName name={cardName === "" ? "Name" : cardName} />
-        <CardDate
-          month={cardMonth === "" ? "--" : cardMonth}
-          year={cardYear === "" ? "--" : cardYear}
-        />
-      </CardData>
-      <CardCvv cvv={cardCvv === "" ? "---" : cardCvv} />
+      {!cardBackVisible ? (
+        <>
+          <CardLogo
+            alt={cardCompany}
+            src={cardCompany
+              .toLowerCase()
+              .split(" ")
+              .join("")}
+          />
+          <CardNumber number={formatCardNumber} />
+          <CardData>
+            <CardName name={cardName === "" ? "Name" : cardName} />
+            <CardDate
+              month={cardMonth === "" ? "--" : cardMonth}
+              year={cardYear === "" ? "--" : cardYear}
+            />
+          </CardData>
+        </>
+      ) : (
+        <CardCvv cvv={cardCvv === "" ? "---" : cardCvv} />
+      )}
     </div>
   );
 };
@@ -86,6 +97,7 @@ const mapStateToProps = state => {
     cardMonth: state.cardMonth,
     cardYear: state.cardYear,
     cardCvv: state.cardCvv,
+    cardBackVisible: state.cardBackVisible,
   };
 };
 

@@ -9,3 +9,4 @@ export const MONTH_ERROR = "MONTH_ERROR";
 export const YEAR_ERROR = "YEAR_ERROR";
 export const CVV_ERROR = "CVV_ERROR";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const CARD_BACK_VISIBLE = "CARD_BACK_VISIBLE";

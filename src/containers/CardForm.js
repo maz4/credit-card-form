@@ -15,6 +15,7 @@ import {
   setNumberError,
   setYearError,
   clearErrors,
+  cardBacVisible,
 } from "../actions/index";
 
 const CardForm = props => {
@@ -95,6 +96,10 @@ const CardForm = props => {
     }
   };
 
+  const showCardBack = status => {
+    props.cardBacVisible(status);
+  };
+
   return (
     <form className={styles.CardForm} onSubmit={event => submitHandler(event)}>
       <Input
@@ -148,6 +153,7 @@ const CardForm = props => {
         maxCharacters="4"
         digitsOnly={true}
         updateHandler={updateCardCvv}
+        showCardBack={showCardBack}
         value={cardCvv}
         error={cvvError}
       />
@@ -184,6 +190,7 @@ const mapDispatchToProps = dispatch => {
     setYearError: () => dispatch(setYearError()),
     setCvvError: () => dispatch(setCvvError()),
     clearErrors: () => dispatch(clearErrors()),
+    cardBacVisible: status => dispatch(cardBacVisible(status)),
   };
 };
 
