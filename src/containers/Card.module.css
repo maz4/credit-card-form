@@ -21,13 +21,17 @@
   box-shadow: 12px 12px 24px 1px #8a8a8a;
 }
 
+.CardBack {
+  /*transform: perspective(1000px) rotateY(180deg) rotateX(0deg);*/
+}
+
 @media medium {
   .Card {
     width: 27rem;
+    height: 17.5rem;
     padding-left: 2rem;
     padding-right: 1rem;
     padding-top: 5rem;
     padding-bottom: 4rem;
-    height: 17.5rem;
   }
 }

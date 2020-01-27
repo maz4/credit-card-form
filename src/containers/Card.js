@@ -62,9 +62,13 @@ const Card = props => {
   const staredNumber = starCardNumber(cardNumber);
   const formatCardNumber = spaceString(staredNumber);
   const cardCompany = cardIndustryIdentifier(cardNumber);
-
+  console.log(typeof styles.Card);
   return (
-    <div className={styles.Card}>
+    <div
+      className={
+        !cardBackVisible ? styles.Card : `${styles.Card} ${styles.CardBack}`
+      }
+    >
       {!cardBackVisible ? (
         <>
           <CardLogo
